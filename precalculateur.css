@@ -1,0 +1,42 @@
+Precalculateur.css
+
+body {
+	width: 100%;
+    height: 100%;
+}
+
+h1 {
+    font-family: bahnschrift;
+    }
+.commencer {
+	background-color: #eebc3f;
+  	border: none;
+  	border-radius: 5px;
+  	position : absolute;
+  	text-align: center;
+  	padding: 5px;
+  	width: 118px;
+}
+
+form {
+	display: flex;
+   	justify-content: center;
+}
+
+p {
+	text-align: center;
+  	color: #909297;
+  	font-family: Futura;
+}
+
+span {
+	color: #221043;
+  	font-family: Futura;
+}
+
+.image {
+  	text-align: center;
+	width: 100%;
+    height: 100%;
+  	margin-top: -24px;
+}

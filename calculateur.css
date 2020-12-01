@@ -1,0 +1,353 @@
+calculateur.css
+
+.images {
+    content: url("https://cdn.shopify.com/s/files/1/0081/5998/5731/files/etapes.png?v=1604667414");
+    /*text-align: center;*/
+    /*width: 100%;*/
+    /*height: 100%;*/
+}
+
+@media screen and (min-width: 1024px) {
+    body {
+        font-family: sans-serif;
+        width: 100%;
+        height: 100%;
+    }
+  	
+    .plan {
+  	    width: 40%;
+        display: block;
+        margin: 0 60%;
+    }
+
+    h1 {
+        font-family: bahnschrift;
+    }
+
+    .images {
+        content: url("https://cdn.shopify.com/s/files/1/0081/5998/5731/files/etapes.png?v=1604667414");
+        text-align: center;
+        width: 100%;
+        height: 100%;
+    }
+  
+    span {
+        color: #000000;
+        text-align: center;
+    }
+
+    .reset {
+        background-color: #221043;
+        border: none;
+        width: 118px;
+        border-radius: 10px;
+        color: white;
+        padding: 5px;
+    }
+
+    .calculer {
+        background-color: #eebc3f;
+        width: 118px;
+        border: none;
+        border-radius: 10px;
+        padding: 5px;
+    }
+  
+  	.age {
+  		height: 30px;
+      	width: 175px;
+      	border-style: none;
+      	border-style: solid;
+  	}
+  
+  	.cm {
+      	height: 30px;
+      	width: 175px;
+      	border-style: none;
+      	border-style: solid;
+    }
+  
+  	.kg {
+  		height: 30px;
+      	width: 175px;
+      	border-style: none;
+      	border-style: solid;
+  	}
+
+    form {
+      	display: flex;
+        width: 100%;
+        height: auto;
+        align-content: flex-start;
+        justify-content: space-around;
+      	font-family: serif;
+    }
+
+    .boutons {
+        text-align: center;
+        font-family: Futura;
+    }
+
+    input {
+        border-radius: 10px;
+        -moz-appearance: textfield;
+    }
+
+    .activiter {
+        font-family: Futura;
+        margin-right: 90px;
+    }
+
+    .objectif {
+        font-family: Futura;
+        margin-right: 50px;
+    }
+
+    .infos {
+        font-family: Futura;
+        padding: 22px;
+      	margin:  5px;
+      	margin-right: 80px;
+    }
+
+    .A {
+        font-family: Futura;
+        text-align: center;
+        border-radius: 10px;
+        background-color: #221043;
+        color: white;
+        padding: 5px;
+
+    }
+
+    .O {
+        font-family: Futura;
+        text-align: center;
+        border-radius: 10px;
+        background-color: #221043;
+        color: white;
+        padding: 5px;
+    }
+
+    .error {
+        text-align: center;
+    }
+
+    input.sir {
+        visibility: hidden;
+        margin-right: -15px;
+        cursor: pointer;
+    }
+
+    input.mrs {
+       visibility: hidden;
+       cursor: pointer;
+
+    }
+
+    input.mrs+label {
+        border: solid;
+        border-radius: 10px;
+        padding: 1px;
+      	cursor: pointer;
+    }
+
+    input.sir+label {
+        border: solid;
+        border-radius: 10px;
+        padding: 1px;
+        cursor: pointer;
+    }
+
+    input.mrs:checked+label {
+        background-color: #221043;
+        border-color: #221043;
+        color: white;
+        border-radius: 10px;
+        padding: 1px;
+      	cursor: pointer;
+    }
+
+    input.sir:checked+label {
+        background-color: #221043;
+        border-color: #221043;
+        color: white;
+        border-radius: 10px;
+        padding: 1px;
+      	cursor: pointer;
+
+    }
+
+    .image_container {
+        display: flex;
+        justify-content: center;
+    }
+
+    .images {
+        width: 75%;
+    }
+}
+
+@media screen and (max-width: 1125px) {
+
+    body {
+        font-family: 'Montserrat', sans-serif;
+        width: 100%;
+        height: 100%;
+    }
+
+    h1 {
+        font-family: bahnschrift;
+    }
+
+    .images {
+        content: url("https://cdn.shopify.com/s/files/1/0081/5998/5731/files/etape.png?v=1604736004");
+        width: 29%;
+    }
+  
+  	.swal2-popup {
+  		font-size: 0.6em;
+    	text-align: center;
+  	}
+
+    .reset {
+        text-align: center;
+        background-color: #221043;
+        border: none;
+        width: 140px;
+        border-radius: 10px;
+        color: white;
+    }
+
+    .calculer {
+        text-align: center;
+        background-color: #eebc3f;
+        width: 140px;
+        border: none;
+        border-radius: 10px;
+    }
+  
+  	.age {
+  		height: 30px;
+      	width: 198px;
+      	border-radius: 10px;
+  	}
+  
+  	.cm {
+      	height: 30px;
+      	width: 198px;
+      	border-radius: 10px;
+    }
+  
+  	.kg {
+  		height: 30px;
+      	width: 198px;
+      	border-radius: 10px;
+  	}
+
+    .A {
+        background-color: #221043;
+        color: white;
+        padding: 5px;
+        border-radius: 10px;
+      	text-align: center;
+    }
+
+    .O {
+        background-color: #221043;
+        color: white;
+        padding: 5px;
+        border-radius: 10px;
+      	text-align: center;
+    }
+
+    input {
+        border-radius: 2px;
+        -moz-appearance: textfield;
+    }
+
+    .boutons {
+        text-align: center;
+        padding: 20px;
+    }
+
+    .objectif {
+        display: inline-block;
+        font-family: Futura;
+      	text-align: left;
+      	margin-top: 75px;
+    }
+
+    .activiter {
+        display: inline-block;
+        font-family: Futura;
+      	margin-top: 5px;
+    }
+
+    .infos {
+        font-family: Futura;
+    }
+
+    input.mrs {
+        visibility: hidden;
+
+    }
+
+    input.sir {
+        visibility: hidden;
+        margin-right: -18px;
+
+    }
+
+    input.mrs:checked+label {
+        background-color: #221043;
+        border-color: #221043;
+        color: white;
+        border-radius: 10px;
+        padding: 1px;
+    }
+
+    input.sir:checked+label {
+        background-color: #221043;
+        border-color: #221043;
+        color: white;
+        border-radius: 10px;
+        padding: 1px;
+    }
+
+    input.mrs+label {
+        border: solid;
+        border-radius: 10px;
+        padding: 1px;
+    }
+
+    input.sir+label {
+        border: solid;
+        border-radius: 10px;
+        padding: 1px;
+    }
+
+    #conteneur {
+        display: flex;
+        flex-direction: row;
+    }
+
+    .etapes {
+        flex: 1;
+        /* fait que tout l'espace restant soit pris*/
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+  
+  	.error {
+       	text-align: center;
+    }
+  
+  	.plan {
+  	   	width: 55%;
+        display: block;
+        margin: 0px 45%;
+  }
+
+}

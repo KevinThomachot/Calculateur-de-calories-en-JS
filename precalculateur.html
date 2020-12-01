@@ -1,0 +1,28 @@
+Page.precalculateur.liquid
+
+{% layout 'theme.calculateur' %}
+<link rel="stylesheet"
+    href="https://fonts.googleapis.com/css?family=Lato:400|Oswald:400|Roboto:400,300,500,700&display=swap">
+<link rel="stylesheet" href="https://cdn.pagefly.io/pagefly/2.13.7/css/main-style.css?t=20200910220923">
+<link rel="stylesheet" href="{{ 'precalculateur.css' | asset_url }}">
+<h1 class="page-title">{{ page.title }}</h1>
+<p> <span>LundiGo</span> vous propose un compteur pour <span>calculer le nombre de calories maximum que vous devez
+        consommer<br> par jour</span> selon votre objectif et votre mode de vie actuel. </p>
+
+<p> Chez <span>LundiGo</span> nous prônons le BodyPositive et l'acceptation de soi. Cela dit il est important pour nous
+    de nous adapter aux<br> envies de chacun. Utilisez donc cet outil pour suivre votre évolution tout le long de votre
+    parcours afin d'apprendre à mieux</br> gérez votre alimentation au quotidien ! </p>
+<form action="https://lundigo.fr/pages/calculateur-de-calorie">
+    <script type="text/javascript">
+        function Redirect() {
+            window.location = "https://lundigo.fr/pages/calculateur-de-calorie";
+        }
+    </script>
+    <input class="commencer" type="button" value="Commencer" onclick="Redirect();" />
+</form>
+<div class="image">
+    <img src="{{ 'Accueil.png' | asset_url }}" alt="Accueil">
+</div>
+<div class="rte">
+    {{ page.content }}
+</div>

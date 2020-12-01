@@ -1,0 +1,324 @@
+Page.calculateur.liquid
+
+
+
+{% layout 'theme.calculator' %}
+
+<h1 class="page-title">{{ page.title }}</h1>
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css?family=Lato:400|Oswald:400|Roboto:400,300,500,700&display=swap">
+    <link rel="stylesheet" href="https://cdn.pagefly.io/pagefly/2.13.7/css/main-style.css?t=20200910220923">
+    <link rel="stylesheet" media="all" href="{{ 'calculateur.css' | asset_url }}">
+    <title></title>
+</head>
+
+<body>
+    <div id="conteneur">
+        <div class="image_container">
+            <img id="image" alt="etapes" class="images" src="" />
+        </div>
+        <div class="etapes">
+            <div>
+                <form id="calcul" class="cal">
+                    <div class="infos">
+                        <div>
+
+                            <input type="radio" name="sexe" class="sir" id="sir" checked>
+                            <label for="sir" class="sirr">♂ Homme</label>
+
+                            <input type="radio" name="sexe" class="mrs" id="mrs">
+                            <label for="mrs" class="mrss">♀ Femme</label>
+                        </div>
+
+                        <p><span>Âge:<br>
+                                </label><input class="age" type="number" pattern="\d*" name="years" id="years"
+                                    value="years" placeholder="Saisissez votre âge">
+
+                                <p><span>Taille(cm):<br>
+                                    </span> <input class="cm" type="number" pattern="\d*" value="size" id="size"
+                                        name="size" placeholder="Saisissez votre taille">
+
+                                <p><span>Poids(kg):<br>
+                                    </span> <input class="kg" type="number" pattern="\d*" value="weight" name="weight"
+                                        id="weight" placeholder="Saisissez votre poids">
+
+                    </div>
+
+                    <div class="activiter">
+                        <h5 class="A">Votre activité physique</h5>
+
+                        <label class="sport">
+                            <input type="radio" name="activity" id="little" value="little" checked="checked">
+                            Peu d'activité physique/sédentaire<br>
+                        </label>
+
+                        <label class="sport">
+                            <input type="radio" name="activity" id="regular" value="regular">
+                            1 à 3 fois par semaine<br>
+                        </label>
+
+                        <label class="sport">
+                            <input type="radio" name="activity" id="sometimes" value="sometimes">
+                            3 à 5 fois par semaine<br>
+                        </label>
+
+                        <label class="sport">
+                            <input type="radio" name="activity" id="allthetime" value="allthetime">
+                            6 à 7 fois par semaine<br>
+                        </label>
+
+                        <label class="sport">
+                            <input type="radio" name="activity" id="athlete" value="athlete">
+                            Athlète<br>
+                        </label>
+                    </div>
+
+                    <div class="objectif">
+                        <h5 class="O">Votre objectif</h5>
+
+                        <label for="perte">
+                            <input type="radio" name="objectif" id="perte" checked="checked">
+                            Perdre du poids <br>
+                        </label>
+
+                        <label for="stagner">
+                            <input type="radio" name="objectif" id="stagner">
+                            Stabiliser<br>
+                        </label>
+
+                        <label for="masse">
+                            <input type="radio" name="objectif" id="masse">
+                            Prendre en masse
+                        </label>
+                    </div>
+                </form>
+
+                <p style="color: red;" id="error" class="error"></p>
+
+                <div class="boutons">
+                    <button type="reset" id="reset" class="reset">Recommencer</button>
+                    <button type="submit" id="calculBtn" class="calculer">Calculer</button>
+                </div>
+
+            </div>
+
+            <div class="plan">
+                <img src="{{ 'plan.png' | asset_url }}" alt="plan">
+            </div>
+
+            <div class="rte">
+            </div>
+        </div>
+    </div>
+    <div class="rte">
+    </div>
+
+    <!--    on commence par intégrer la libraire-->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+
+    <script type="text/javascript">
+
+
+        document.addEventListener('DOMContentLoaded', () => {
+
+            //Déclaration des variables neccésaires au fonctionnement du calculateur
+            let mrs = document.getElementById("mrs");
+            let sir = document.getElementById("sir");
+            let little = document.getElementById("little");
+            let regular = document.getElementById("regular");
+            let sometimes = document.getElementById("sometimes");
+            let allthetime = document.getElementById("allthetime");
+            let athlete = document.getElementById("athlete");
+            let perte = document.getElementById("perte");
+            let stagner = document.getElementById("stagner");
+            let masse = document.getElementById("masse");
+            let form = document.getElementById("calcul");
+            let submitBtn = document.getElementById("calculBtn");
+
+
+            let resetBtn = document.getElementById("reset");
+            //cet evenement gère la réinitialisation du formulaire, et des erreurs afficher si il y en a eu
+            resetBtn.addEventListener("click", function (e) {
+                e.preventDefault();
+                document.getElementById("error").innerHTML = "";
+                form.reset();
+            });
+
+
+            //plutot que de faire le traitement lors de la soumission du formulaire on considéra que le click sur ce bouton correspond à la soumission et donc on fait le traitement ici
+            submitBtn.addEventListener("click", function (e) {
+
+                e.preventDefault();
+                let error;
+                let years = document.getElementById("years");
+                let size = document.getElementById("size");
+                let weight = document.getElementById("weight");
+
+                let sexConstant = null;
+                let objectifConstant = null;
+                let activityConstant = null;
+
+
+                //On vérifie si les champs sont remplis
+                if (!weight.value) {
+                    error = "Veuillez renseigner votre poids s'il vous plaît !";
+                }
+                if (!size.value) {
+                    error = "Veuillez renseigner votre taille s'il vous plaît ! ";
+                }
+                if (!years.value) {
+                    error = "Veuillez renseigner votre âge s'il vous plaît !";
+                }
+
+
+                // On vérifie si il y a des chiffres négatifs et si oui on renvoie une erreur
+                if (years.value < 0 || weight.value < 0 || size.value < 0) {
+                    error = "Les nombres négatifs sont interdit !";
+                }
+
+                //La méthode  preventDefault() de l 'interface Event indique à l'agent utilisateur que si l'événement n'est pas traité explicitement, son action par défaut ne doit pas être prise en compte comme elle le serait normalement
+                if (error) {
+                    e.preventDefault();
+                    document.getElementById("error").innerHTML = error;
+                    return false;
+                } else {
+                    document.getElementById("error").innerHTML = "";
+                }
+
+                if (sir.checked) {
+                    sexConstant = 5;
+                } else {
+                    if (mrs.checked) {
+                        sexConstant = -161;
+                    } else {
+                        //afficher une erreur
+                    }
+                }
+
+                //activité
+                if (little.checked) {
+                    activityConstant = 1.20;
+                } else {
+                    if (regular.checked) {
+                        activityConstant = 1.37;
+                    } else {
+                        if (sometimes.checked) {
+                            activityConstant = 1.55;
+                        } else {
+                            if (allthetime.checked) {
+                                activityConstant = 1.75;
+                            } else {
+                                if (athlete.checked) {
+                                    activityConstant = 1.90;
+                                } else {
+                                    //afficher une erreur
+                                }
+
+                            }
+                        }
+                    }
+                }
+
+                function getFinalMessage(resultatCalcul) {
+                    //objectif
+                    let message = "";
+                    if (perte.checked) {
+                        message = "Si vous souhaitez perdre du poids vous devez consommer " + resultatCalcul + " kcal maximum par jour.";
+                    } else {
+                        if (stagner.checked) {
+                            message = "Si vous souhaitez gardez votre ligne vous devez consommer au maximum " + resultatCalcul + " kcal par jour.";
+                        } else {
+                            if (masse.checked) {
+                                message = "Si vous souhaitez prendre en masse vous devez consommer plus ou moins " + resultatCalcul + " kcal par jour.";
+                            } else {
+                                //afficher une erreur
+                            }
+                        }
+                    }
+                    return message;
+                }
+
+                //objectif
+                if (perte.checked) {
+                    objectifConstant = -500;
+                } else {
+                    if (stagner.checked) {
+                        objectifConstant = 0;
+                    } else {
+                        if (masse.checked) {
+                            objectifConstant = 500;
+                        } else {
+                            //afficher une erreur
+                        }
+                    }
+                }
+
+                let calcul = parseInt((10 * weight.value + 6.25 * size.value - 5 * years.value + sexConstant) * activityConstant) + objectifConstant;
+
+                let messageFinal = getFinalMessage(calcul)
+                Swal.fire({
+                    title: 'Résultat Calorique',
+                    text: messageFinal,
+                    width: 600,
+                    padding: '4em',
+                    background: 'url(https://cdn.shopify.com/s/files/1/0081/5998/5731/files/popup3.png?v=1606310241)'
+                })
+
+                //On affécte une action de click sur les différentes checkbox(bouton radio), et on leur insigne une valeur (l'id)
+                little.addEventListener('click', (event) => {
+                    if (event.target.checked) {
+                        little;
+                    }
+                });
+
+                regular.addEventListener('click', (event) => {
+                    if (event.target.checked) {
+                        regular;
+                    }
+                });
+
+                sometimes.addEventListener('click', (event) => {
+                    if (event.target.checked) {
+                        sometimes;
+                    }
+                });
+
+                allthetime.addEventListener('click', (event) => {
+                    if (event.target.checked) {
+                        allthetime;
+                    }
+                });
+
+                athlete.addEventListener('click', (event) => {
+                    if (event.target.checked) {
+                        athlete;
+                    }
+
+                });
+
+                perte.addEventListener('click', (event) => {
+                    if (event.target.checked) {
+                        perte;
+                    }
+                });
+
+                stagner.addEventListener('click', (event) => {
+                    if (event.target.checked) {
+                        stagner;
+                    }
+                });
+
+                masse.addEventListener('click', (event) => {
+                    if (event.target.checked) {
+                        masse;
+                    }
+                });
+            });
+        });
+    </script>
